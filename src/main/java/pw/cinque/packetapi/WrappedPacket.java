@@ -7,7 +7,7 @@ import java.util.List;
 @RequiredArgsConstructor
 public class WrappedPacket {
 
-    private final String packetType;
+    private final String type;
     private final Object packet;
     private final List<Object> values;
 
@@ -16,8 +16,8 @@ public class WrappedPacket {
      *
      * @return The name of the packet's class, such as 'PacketPlayInFlying'
      */
-    public String getPacketType() {
-        return packetType;
+    public String getType() {
+        return type;
     }
 
     /**
