@@ -9,7 +9,7 @@ public class WrappedPacket {
 
     private final String type;
     private final Object packet;
-    private final List<Object> values;
+    private final PacketValues values;
 
     /**
      * Gets the packet type
@@ -34,7 +34,7 @@ public class WrappedPacket {
      *
      * @return A {@link List} containing the values of the fields in the packet's class, these values can be null.
      */
-    public List<Object> getValues() {
+    public PacketValues getValues() {
         return values;
     }
 
