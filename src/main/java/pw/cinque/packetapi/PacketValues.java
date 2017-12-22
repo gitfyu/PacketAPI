@@ -41,8 +41,9 @@ public class PacketValues implements Iterable {
      * @throws ArrayIndexOutOfBoundsException if the index is out of range
      * @throws ClassCastException             if the value is not assignable to the specified type
      */
+    @SuppressWarnings("unchecked")
     public <T> T get(int i, Class<T> type) {
-        return type.cast(values.get(i));
+        return (T) values.get(i);
     }
 
     @Override
