@@ -1,0 +1,4 @@
+name: PacketAPI
+author: Fyu
+version: ${project.version}
+main: pw.cinque.packetapi.PacketAPI
