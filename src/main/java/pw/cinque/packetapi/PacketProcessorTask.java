@@ -24,22 +24,30 @@ class PacketProcessorTask extends BukkitRunnable {
     }
 
     private void processQueues(PacketPlayer packetPlayer) {
-        packetPlayer.getIncomingQueue().forEach(packet -> {
+        packetPlayer.getIncomingQueue().removeIf(packet -> {
 
             WrappedPacket wrappedPacket = wrapPacket(packet);
 
             if (wrappedPacket != null) {
-                Bukkit.getPluginManager().callEvent(new PacketReceiveEvent(wrapPacket(packet)));
+                PacketReceiveEvent event = new PacketReceiveEvent(wrappedPacket);
+                Bukkit.getPluginManager().callEvent(event);
+                return event.isCancelled();
+            } else {
+                return false;
             }
 
         });
 
-        packetPlayer.getOutgoingQueue().forEach(packet -> {
+        packetPlayer.getOutgoingQueue().removeIf(packet -> {
 
             WrappedPacket wrappedPacket = wrapPacket(packet);
 
             if (wrappedPacket != null) {
-                Bukkit.getPluginManager().callEvent(new PacketSendEvent(wrapPacket(packet)));
+                PacketSendEvent event = new PacketSendEvent(wrappedPacket);
+                Bukkit.getPluginManager().callEvent(event);
+                return event.isCancelled();
+            } else {
+                return false;
             }
 
         });
