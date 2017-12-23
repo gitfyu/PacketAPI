@@ -3,12 +3,10 @@ package pw.cinque.packetapi;
 import lombok.AccessLevel;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Iterator;
 import java.util.List;
-import java.util.function.Consumer;
 
 @RequiredArgsConstructor(access = AccessLevel.PACKAGE)
-public class PacketValues implements Iterable {
+public class PacketValues {
 
     private final List<Object> values;
 
@@ -44,37 +42,6 @@ public class PacketValues implements Iterable {
     @SuppressWarnings("unchecked")
     public <T> T get(int i, Class<T> type) {
         return (T) values.get(i);
-    }
-
-    @Override
-    public Iterator iterator() {
-        return new PacketValuesIterator();
-    }
-
-    public class PacketValuesIterator implements Iterator<Object> {
-
-        private int index;
-
-        @Override
-        public boolean hasNext() {
-            return index < values.size();
-        }
-
-        @Override
-        public Object next() {
-            return values.get(index++);
-        }
-
-        @Override
-        public void remove() {
-            throw new UnsupportedOperationException();
-        }
-
-        @Override
-        public void forEachRemaining(Consumer<? super Object> action) {
-            throw new UnsupportedOperationException();
-        }
-
     }
 
 }
